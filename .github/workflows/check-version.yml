@@ -1,4 +1,4 @@
-name: Check Latest Android SDK
+name: Check Latest UniApp SDK
 
 on:
   workflow_dispatch:
