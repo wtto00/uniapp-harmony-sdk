@@ -1,0 +1,35 @@
+name: Check Latest Android SDK
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 23 * * *"
+
+jobs:
+  # Single deploy job since we're just deploying
+  version-update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: |
+            check-version.mjs
+            package.json
+            pnpm-lock.yaml
+
+      - run: corepack enable
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: "pnpm"
+          cache-dependency-path: pnpm-lock.yaml
+
+      - name: Install Dependencies
+        run: pnpm i
+
+      # github pages
+      - name: Check Version Update
+        run: node check-version.mjs
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
