@@ -58,7 +58,7 @@ const create = await octokit.rest.issues.create({
   title: latest,
   body: `A new version of the UniApp offline SDK is now available!
 
-Go to [download](${url}) and sync the repository.
+Go to [download latest HBuilderX](https://www.dcloud.io/hbuilderx.html) and create harmony project by HBuilderX.
 
 Query NPM dependency [@dcloudio/uni-app](https://www.npmjs.com/package/@dcloudio/uni-app?activeTab=versions) version.`,
 });
